@@ -1,0 +1,277 @@
+.footer {
+  width: 100%;
+  background: #fff;
+}
+
+/* CITIES SECTION */
+.cities-section {
+  background: #f8f9fa;
+  padding: 40px 20px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.cities-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.cities-container h3 {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0 0 24px 0;
+  color: #1a1a1a;
+}
+
+.cities-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 12px 20px;
+}
+
+.city-name {
+  font-size: 13px;
+  color: #666;
+  line-height: 1.5;
+}
+
+/* MAIN FOOTER */
+.footer-main {
+  background: #1a1a1a;
+  padding: 60px 40px 40px 40px;
+  color: #fff;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+  gap: 40px;
+}
+
+/* BRAND */
+.footer-brand {
+  max-width: 320px;
+}
+
+.brand-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.brand-logo h3 {
+  font-size: 24px;
+  font-weight: 800;
+  margin: 0;
+  color: #fff;
+}
+
+.footer-brand p {
+  font-size: 14px;
+  line-height: 1.7;
+  color: #b0b0b0;
+  margin: 0 0 24px 0;
+}
+
+.social-icons {
+  display: flex;
+  gap: 12px;
+}
+
+.social-icons a {
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  color: #fff;
+}
+
+.social-icons a:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+/* FOOTER COLUMNS */
+.footer-column h4 {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0 0 20px 0;
+  color: #fff;
+}
+
+.footer-column a {
+  display: block;
+  font-size: 14px;
+  color: #b0b0b0;
+  text-decoration: none;
+  margin-bottom: 12px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.footer-column a:hover {
+  color: #fff;
+  padding-left: 4px;
+}
+
+/* SOCIAL ICONS IN FOOTER */
+.social-icons-footer {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.social-icons-footer a {
+  width: 36px;
+  height: 36px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  color: #b0b0b0;
+  font-size: 16px;
+  text-decoration: none;
+}
+
+.social-icons-footer a:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+  color: #fff;
+}
+
+/* APP BUTTONS */
+.footer-apps {
+  grid-column: span 1;
+}
+
+.app-buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.app-button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  background: #000;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  min-width: 140px;
+}
+
+.app-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.app-icon {
+  font-size: 24px;
+  line-height: 1;
+}
+
+.app-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.app-small {
+  font-size: 9px;
+  color: #b0b0b0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.app-large {
+  font-size: 14px;
+  color: #fff;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.app-store .app-icon {
+  filter: brightness(0) invert(1);
+}
+
+.google-play .app-icon {
+  color: #fff;
+}
+
+/* COPYRIGHT */
+.footer-bottom {
+  background: #0a0a0a;
+  padding: 20px 40px;
+  text-align: center;
+  font-size: 13px;
+  color: #808080;
+  letter-spacing: 1px;
+}
+
+/* Responsive */
+@media (max-width: 968px) {
+  .footer-container {
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+
+  .footer-brand {
+    max-width: 100%;
+    grid-column: 1 / -1;
+  }
+
+  .footer-apps {
+    grid-column: 1 / -1;
+  }
+
+  .app-buttons {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 640px) {
+  .cities-section {
+    padding: 24px 12px;
+  }
+
+  .cities-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px 12px;
+  }
+
+  .footer-main {
+    padding: 40px 20px 24px 20px;
+  }
+
+  .footer-container {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .footer-bottom {
+    padding: 16px 20px;
+    font-size: 11px;
+  }
+
+  .app-buttons {
+    flex-direction: column;
+  }
+
+  .app-button {
+    width: 100%;
+  }
+}
