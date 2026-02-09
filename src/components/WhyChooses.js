@@ -6,7 +6,7 @@ export default function WhyChooses() {
     <section className="why-choose">
       <div className="container">
         <div className="section-header">
-          <h3 className="section-title">Why Choose SVK Experts?</h3>
+          <h3 className="section-title">Why Choose Urbanfixo?</h3>
           <p className="section-subtitle">We're committed to providing the best service experience</p>
         </div>
 

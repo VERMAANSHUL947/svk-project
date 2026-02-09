@@ -104,11 +104,7 @@ export default function Header() {
 
         {/* LOGO */}
         <div className="logo" onClick={() => router.push('/')} style={{ cursor: 'pointer' }}>
-          <img src="/images/logo.png" alt="SVK Experts" />
-          <div>
-            <h2>SVK</h2>
-            <span>Experts</span>
-          </div>
+          <img src="/urbanfixo-logo.png" alt="Urbanfixo - Home Services Simplified" style={{ height: '50px', width: 'auto', objectFit: 'contain' }} />
         </div>
 
         {/* SEARCH */}

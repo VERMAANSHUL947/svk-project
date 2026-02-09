@@ -1,4 +1,4 @@
-# 🏠 SVK Home Services Platform
+# 🏠 Urbanfixo - Home Services Simplified
 
 A comprehensive home services booking platform built with Next.js, offering various services like plumbing, electrical work, AC repair, appliance repair, and more. The platform connects users with verified service partners and provides a seamless booking experience.
 

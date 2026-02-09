@@ -23,8 +23,7 @@ export default function Footers() {
           {/* BRAND */}
           <div className="footer-brand">
             <div className="brand-logo">
-              <Home />
-              <h3>SVK Experts</h3>
+              <img src="/urbanfixo-logo.png" alt="Urbanfixo" style={{ height: '45px', width: 'auto', objectFit: 'contain' }} />
             </div>
             <p>
               Your trusted partner for all home services. From repairs to beauty,
@@ -67,10 +66,10 @@ export default function Footers() {
 
           {/* APP */}
           <div className="footer-column app">
-  <h4>Download App</h4>
-  <img src="/appstore.png" alt="App Store" />
-  <img src="/playstore.png" alt="Play Store" />
-</div>
+            <h4>Download App</h4>
+            <img src="/appstore.png" alt="App Store" />
+            <img src="/playstore.png" alt="Play Store" />
+          </div>
 
 
         </div>
@@ -78,7 +77,7 @@ export default function Footers() {
 
       {/* COPYRIGHT */}
       <div className="footer-bottom">
-        © 2026 SVK Experts. All Rights Reserved.
+        © 2026 Urbanfixo. All Rights Reserved.
       </div>
 
     </footer>
