@@ -22,8 +22,42 @@ export default function Footers() {
 
           {/* BRAND */}
           <div className="footer-brand">
-            <div className="brand-logo">
-              <img src="/urbanfixo-logo.png" alt="Urbanfixo" style={{ height: '45px', width: 'auto', objectFit: 'contain' }} />
+            <div className="brand-logo" style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '16px' }}>
+              <div style={{
+                width: '45px',
+                height: '45px',
+                background: 'linear-gradient(135deg, #ff6b6b 0%, #f59e0b 25%, #fbbf24 50%, #10b981 75%, #3b82f6 100%)',
+                borderRadius: '50%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
+                flexShrink: 0
+              }}>
+                <div style={{
+                  fontSize: '24px',
+                  fontWeight: '900',
+                  color: 'white',
+                  textShadow: '0 2px 4px rgba(0,0,0,0.3)'
+                }}>🏠</div>
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', lineHeight: '1.2' }}>
+                <span style={{
+                  fontSize: '24px',
+                  fontWeight: '800',
+                  color: '#1e293b',
+                  letterSpacing: '-0.5px'
+                }}>
+                  Urban<span style={{ color: '#f59e0b' }}>fixo</span>
+                </span>
+                <span style={{
+                  fontSize: '10px',
+                  color: '#64748b',
+                  fontWeight: '600',
+                  letterSpacing: '0.5px',
+                  textTransform: 'uppercase'
+                }}>Home Services Simplified</span>
+              </div>
             </div>
             <p>
               Your trusted partner for all home services. From repairs to beauty,
