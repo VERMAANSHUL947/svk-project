@@ -67,6 +67,19 @@ export default function PartnerDashboardPremium() {
         const file = e.target.files[0];
         if (!file) return;
 
+        // Validate file type
+        const validTypes = ['image/jpeg', 'image/jpg', 'image/png'];
+        if (!validTypes.includes(file.type)) {
+            alert('Kripya sirf JPEG, JPG ya PNG photo hi select karein.');
+            return;
+        }
+
+        // Validate file size (e.g., 5MB limit to prevent Base64 issues)
+        if (file.size > 5 * 1024 * 1024) {
+            alert('Photo ka size 5MB se kam hona chahiye.');
+            return;
+        }
+
         const reader = new FileReader();
         reader.onloadend = async () => {
             const dataUrl = reader.result;
@@ -84,7 +97,7 @@ export default function PartnerDashboardPremium() {
             } else {
                 setBannerForm(prev => ({ ...prev, imageUrl: urlToUse }));
             }
-            alert('Image Selected from Folder!');
+            alert('Photo selected and saved successfully! Ab aap isse publish kar sakte hain.');
         };
         reader.readAsDataURL(file);
     };
@@ -116,13 +129,13 @@ export default function PartnerDashboardPremium() {
     }, []);
 
     const handleSaveCategory = async () => {
-        if (!catForm.name) return;
+        if (!catForm.name) return alert('Kripya category ka naam dalein.');
         try {
             const method = catForm._id ? 'PATCH' : 'POST';
             const payload = {
                 ...catForm,
                 price: catForm.price ? Number(catForm.price) : 0,
-                details: catForm.details.split('\n').filter(d => d.trim() !== '')
+                details: (catForm.details || '').split('\n').filter(d => d.trim() !== '')
             };
 
             // For PATCH, we need to send 'id' as a separate field in body based on API route
@@ -1301,7 +1314,9 @@ export default function PartnerDashboardPremium() {
                                                                     {sub.children.map(co => (
                                                                         <div key={co._id} className="co-cat-item" style={{ background: 'white', margin: '4px 0', border: '1px solid #F1F5F9' }}>
                                                                             <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                                                                                <span style={{ fontSize: '1rem' }}>{co.icon || '⚡'}</span>
+                                                                                <div style={{ width: 32, height: 32, overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#f1f5f9', borderRadius: '4px' }}>
+                                                                                    {co.icon ? ((co.icon.startsWith('http') || co.icon.startsWith('data:')) ? <img src={co.icon} style={{ width: '100%', height: '100%', objectFit: 'contain' }} /> : co.icon) : '⚡'}
+                                                                                </div>
                                                                                 <div>
                                                                                     <div style={{ fontSize: '0.85rem', fontWeight: 600 }}>{co.name}</div>
                                                                                     <div style={{ fontSize: '0.75rem', color: '#059669', fontWeight: 700 }}>₹{co.price}</div>
@@ -1362,7 +1377,10 @@ export default function PartnerDashboardPremium() {
                                 </div>
                             </div>
                             <div style={{ display: 'flex', gap: '15px', alignItems: 'stretch' }}>
-                                <div className="dash-upload-area" style={{ flex: 1 }} onClick={() => setShowGalleryModal(true)}>
+                                <div className="dash-upload-area" style={{ flex: 1 }} onClick={() => {
+                                    setPickingFor('banner');
+                                    setShowGalleryModal(true);
+                                }}>
                                     {bannerForm.imageUrl ? (
                                         <div style={{ position: 'relative', width: '100%' }}>
                                             <img src={bannerForm.imageUrl} alt="Banner" style={{ width: '100%', height: '180px', objectFit: 'cover', borderRadius: '8px' }} />
@@ -1378,11 +1396,11 @@ export default function PartnerDashboardPremium() {
 
                                 <label className="dash-upload-area" style={{ flex: 1, cursor: 'pointer', borderStyle: 'dashed', background: '#F9FAFB' }}>
                                     <FaPlus style={{ fontSize: '2rem', marginBottom: '0.5rem', color: '#059669' }} />
-                                    <p style={{ fontWeight: 600, color: '#1F2937', fontSize: '0.9rem' }}>Upload from Folder</p>
+                                    <p style={{ fontWeight: 600, color: '#1F2937', fontSize: '0.9rem' }}>Upload Photo (JPEG/PNG)</p>
                                     <input
                                         type="file"
                                         style={{ display: 'none' }}
-                                        accept="image/*"
+                                        accept=".jpg,.jpeg,.png"
                                         onChange={(e) => {
                                             setPickingFor('banner');
                                             handleFolderImageUpload(e);
@@ -1550,18 +1568,23 @@ export default function PartnerDashboardPremium() {
                                 }}>Add via URL</button>
 
                                 <label className="profile-btn" style={{ width: 'auto', background: '#059669', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                                    <FaPlus /> Upload from Computer
+                                    <FaPlus /> Upload Photo (JPEG/PNG)
                                     <input
                                         type="file"
                                         style={{ display: 'none' }}
-                                        accept="image/*"
+                                        accept=".jpg,.jpeg,.png"
                                         onChange={async (e) => {
                                             const file = e.target.files[0];
                                             if (file) {
+                                                // Quick validation before reading
+                                                const validTypes = ['image/jpeg', 'image/jpg', 'image/png'];
+                                                if (!validTypes.includes(file.type)) {
+                                                    return alert('Sirf JPEG, JPG ya PNG upload karein.');
+                                                }
                                                 const reader = new FileReader();
                                                 reader.onloadend = async () => {
                                                     await addToGallery(reader.result);
-                                                    alert('Uploaded successfully from folder!');
+                                                    alert('Gallery mein photo add ho gayi! Ab aap isse use karke publish kar sakte hain.');
                                                 };
                                                 reader.readAsDataURL(file);
                                             }
@@ -1588,13 +1611,23 @@ export default function PartnerDashboardPremium() {
                                         <div style={{ position: 'absolute', top: 10, right: 10, display: 'flex', gap: '5px' }}>
                                             <button
                                                 onClick={() => {
+                                                    setPickingFor('banner');
                                                     setBannerForm(prev => ({ ...prev, imageUrl: item.url }));
-                                                    alert('URL copied to Banner Form!');
+                                                    alert('✅ Photo selected for Banner! Banners tab check karein.');
                                                     setActiveTab('Banners');
                                                 }}
                                                 style={{ background: '#2563EB', color: 'white', border: 'none', padding: '5px 10px', borderRadius: '4px', fontSize: '0.7rem', cursor: 'pointer', fontWeight: 600 }}
                                             >
-                                                Use
+                                                Use for Banner
+                                            </button>
+                                            <button
+                                                onClick={() => {
+                                                    navigator.clipboard.writeText(item.url);
+                                                    alert('✅ URL copied! Aap isse kisi bhi form mein paste kar sakte hain.');
+                                                }}
+                                                style={{ background: '#64748B', color: 'white', border: 'none', padding: '5px 10px', borderRadius: '4px', fontSize: '0.7rem', cursor: 'pointer', fontWeight: 600 }}
+                                            >
+                                                Copy URL
                                             </button>
                                             <button
                                                 onClick={() => handleDeleteGallery(item._id)}
@@ -1786,7 +1819,7 @@ export default function PartnerDashboardPremium() {
                     <div className="modal-overlay" style={{
                         position: 'fixed', top: 0, left: 0, width: '100%', height: '100%',
                         background: 'rgba(0,0,0,0.5)', display: 'flex', alignItems: 'center',
-                        justifyContent: 'center', zIndex: 10001
+                        justifyContent: 'center', zIndex: 10000
                     }}>
                         <div className="modal-content" style={{ background: 'white', width: '90%', maxWidth: '500px', borderRadius: '16px', padding: '2rem' }}>
                             <h3>{catForm.level === 0 ? 'New Parent Category' : catForm.level === 1 ? 'New Sub-category' : 'New Service (Co-category)'}</h3>
@@ -1798,17 +1831,27 @@ export default function PartnerDashboardPremium() {
 
                             <div className="form-group">
                                 <label className="form-label">Icon (Emoji ya Small Icon)</label>
+                                <div style={{ display: 'flex', gap: '10px', alignItems: 'center', marginBottom: '10px' }}>
+                                    {catForm.icon && (catForm.icon.startsWith('http') || catForm.icon.startsWith('data:')) ? (
+                                        <div style={{ width: '45px', height: '45px', borderRadius: '8px', border: '2px solid #2563EB', overflow: 'hidden', flexShrink: 0 }}>
+                                            <img src={catForm.icon} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                                        </div>
+                                    ) : (
+                                        <div style={{ width: '45px', height: '45px', borderRadius: '8px', border: '1px solid #E5E7EB', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.5rem', background: '#F9FAFB', flexShrink: 0 }}>
+                                            {catForm.icon || '📁'}
+                                        </div>
+                                    )}
+                                    <input className="form-input" value={catForm.icon || ''} onChange={e => setCatForm({ ...catForm, icon: e.target.value })} placeholder="e.g. 🚿 or URL" style={{ flex: 1 }} />
+                                </div>
                                 <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
-                                    <input className="form-input" value={catForm.icon || ''} onChange={e => setCatForm({ ...catForm, icon: e.target.value })} placeholder="e.g. 🚿 or URL" style={{ flex: '1 1 auto' }} />
-
                                     <button className="profile-btn" style={{ width: 'auto', background: '#6366f1' }} onClick={() => {
                                         setPickingFor('category-icon');
                                         setShowGalleryModal(true);
-                                    }}>Gallery</button>
+                                    }}>Gallery Se Chunein</button>
 
                                     <label className="profile-btn" style={{ width: 'auto', background: '#059669', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                                        <FaPlus /> Folder
-                                        <input type="file" style={{ display: 'none' }} accept="image/*" onChange={(e) => {
+                                        <FaPlus /> Folder Upload
+                                        <input type="file" style={{ display: 'none' }} accept=".jpg,.jpeg,.png" onChange={(e) => {
                                             setPickingFor('category-icon');
                                             handleFolderImageUpload(e);
                                         }} />
@@ -1819,17 +1862,23 @@ export default function PartnerDashboardPremium() {
                             {catForm.level === 1 && (
                                 <div className="form-group">
                                     <label className="form-label">Cover Image (For Sub-category Grid)</label>
+                                    {catForm.image && (
+                                        <div style={{ width: '100%', height: '120px', borderRadius: '12px', overflow: 'hidden', marginBottom: '10px', border: '1px solid #E5E7EB' }}>
+                                            <img src={catForm.image} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                                        </div>
+                                    )}
+                                    <div style={{ display: 'flex', gap: '10px', alignItems: 'center', marginBottom: '10px' }}>
+                                        <input className="form-input" value={catForm.image || ''} onChange={e => setCatForm({ ...catForm, image: e.target.value })} placeholder="Large Image URL" style={{ flex: 1 }} />
+                                    </div>
                                     <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
-                                        <input className="form-input" value={catForm.image || ''} onChange={e => setCatForm({ ...catForm, image: e.target.value })} placeholder="Large Image URL" style={{ flex: '1 1 auto' }} />
-
                                         <button className="profile-btn" style={{ width: 'auto', background: '#6366f1' }} onClick={() => {
                                             setPickingFor('category-image');
                                             setShowGalleryModal(true);
-                                        }}>Gallery</button>
+                                        }}>Gallery Se Chunein</button>
 
                                         <label className="profile-btn" style={{ width: 'auto', background: '#059669', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                                            <FaPlus /> Folder
-                                            <input type="file" style={{ display: 'none' }} accept="image/*" onChange={(e) => {
+                                            <FaPlus /> Folder Upload
+                                            <input type="file" style={{ display: 'none' }} accept=".jpg,.jpeg,.png" onChange={(e) => {
                                                 setPickingFor('category-image');
                                                 handleFolderImageUpload(e);
                                             }} />
@@ -1868,7 +1917,7 @@ export default function PartnerDashboardPremium() {
                 {/* --- GALLERY MODAL --- */}
                 {
                     showGalleryModal && (
-                        <div className="modal-overlay" style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', background: 'rgba(0,0,0,0.7)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 10000 }}>
+                        <div className="modal-overlay" style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', background: 'rgba(0,0,0,0.8)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 20000 }}>
                             <div className="modal-content" style={{ background: 'white', width: '90%', maxWidth: '800px', height: '80vh', borderRadius: '16px', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
                                 <div className="modal-header" style={{ padding: '20px', borderBottom: '1px solid #E5E7EB', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                                     <h3 style={{ margin: 0 }}>Media Gallery & Photos</h3>
@@ -1907,11 +1956,11 @@ export default function PartnerDashboardPremium() {
                                         }}>Add URL</button>
 
                                         <label className="profile-btn" style={{ width: 'auto', background: '#059669', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                                            <FaPlus /> Folder Upload
+                                            <FaPlus /> Upload JPG/PNG
                                             <input
                                                 type="file"
                                                 style={{ display: 'none' }}
-                                                accept="image/*"
+                                                accept=".jpg,.jpeg,.png"
                                                 onChange={(e) => {
                                                     handleFolderImageUpload(e);
                                                     setShowGalleryModal(false);
@@ -2005,8 +2054,8 @@ export default function PartnerDashboardPremium() {
 
                         {/* Modal */}
                         {showSectionModal && (
-                            <div className="modal-overlay">
-                                <div className="modal-content" style={{ maxWidth: '600px', maxHeight: '90vh', overflowY: 'auto' }}>
+                            <div className="modal-overlay" style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', background: 'rgba(0,0,0,0.5)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 10000 }}>
+                                <div className="modal-content" style={{ background: 'white', width: '90%', maxWidth: '600px', maxHeight: '90vh', overflowY: 'auto', borderRadius: '16px', padding: '2rem' }}>
                                     <h2>Create Custom Section</h2>
                                     <input
                                         type="text"
@@ -2040,8 +2089,8 @@ export default function PartnerDashboardPremium() {
                                                     <FaImage /> Gallery
                                                 </button>
                                                 <label className="filter-btn" style={{ flex: 1, justifyContent: 'center', background: '#059669', color: 'white', cursor: 'pointer' }}>
-                                                    <FaPlus /> Folder
-                                                    <input type="file" style={{ display: 'none' }} accept="image/*" onChange={(e) => {
+                                                    <FaPlus /> Folder (JPG/PNG)
+                                                    <input type="file" style={{ display: 'none' }} accept=".jpg,.jpeg,.png" onChange={(e) => {
                                                         setPickingFor('section-item');
                                                         handleFolderImageUpload(e);
                                                     }} />
