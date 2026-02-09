@@ -307,22 +307,27 @@
 
 @media (max-width: 640px) {
   .header-container {
-    gap: 12px;
-    padding: 0 16px;
+    gap: 8px;
+    padding: 0 12px;
+    height: 64px;
   }
 
   .logo {
-    gap: 8px;
+    gap: 0;
+    padding: 8px;
   }
 
   .logo img {
-    width: 38px;
-    height: 38px;
+    width: auto !important;
+    height: 45px !important;
+    max-height: 45px !important;
+    object-fit: contain !important;
   }
 
   .header-search {
-    flex: none;
-    max-width: 200px;
+    flex: 1;
+    max-width: none;
+    padding: 10px 14px;
   }
 
   .header-search input {
@@ -333,8 +338,22 @@
     display: none;
   }
 
+  .partner-btn {
+    display: none;
+  }
+
   .header-actions {
     gap: 8px;
+  }
+
+  .cart {
+    width: 42px;
+    height: 42px;
+  }
+
+  .user-profile-header {
+    width: 40px;
+    height: 40px;
   }
 }
 

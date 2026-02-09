@@ -257,7 +257,8 @@
     }
 
     .carousel-wrapper {
-        padding: 0;
+        padding: 0 45px;
+        position: relative;
     }
 
     .carousel-track {
@@ -283,11 +284,42 @@
         min-width: 280px;
     }
 
+    /* Show arrows on mobile with better styling */
     .carousel-nav {
-        display: none;
+        display: flex;
+        width: 36px;
+        height: 36px;
+        background: linear-gradient(135deg, #00D9A5 0%, #00b894 100%);
+        border: none;
+        color: white;
+        box-shadow: 0 4px 12px rgba(0, 217, 165, 0.4);
+        z-index: 20;
+    }
+
+    .carousel-nav:hover {
+        background: linear-gradient(135deg, #00b894 0%, #00a885 100%);
+        transform: translateY(-50%) scale(1.05);
+    }
+
+    .carousel-nav.prev {
+        left: 5px;
+    }
+
+    .carousel-nav.next {
+        right: 5px;
     }
 
     .carousel-dots {
-        display: none;
+        display: flex;
+        margin-top: 16px;
+    }
+
+    .dot {
+        width: 8px;
+        height: 8px;
+    }
+
+    .dot.active {
+        width: 20px;
     }
 }
