@@ -124,7 +124,24 @@
 /* Responsive */
 @media (max-width: 640px) {
     .most-booked-section {
-        padding: 24px 12px;
+        padding: 24px 0;
+    }
+
+    .most-booked-container {
+        padding: 0;
+    }
+
+    .most-booked-header {
+        padding: 0 12px;
+    }
+
+    .most-booked-scroll {
+        padding: 0 12px 16px;
+        scrollbar-width: none;
+    }
+
+    .most-booked-scroll::-webkit-scrollbar {
+        display: none;
     }
 
     .booked-card {

@@ -86,12 +86,35 @@
 
 @media (max-width: 640px) {
     .essential-services-section {
-        padding: 24px 12px;
+        padding: 24px 0;
+    }
+
+    .essential-services-container {
+        padding: 0;
+    }
+
+    .essential-services-container>h2 {
+        padding: 0 12px;
     }
 
     .essential-services-grid {
-        grid-template-columns: 1fr;
+        display: flex;
+        overflow-x: auto;
+        overflow-y: hidden;
         gap: 12px;
+        grid-template-columns: unset;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        padding: 0 12px;
+    }
+
+    .essential-services-grid::-webkit-scrollbar {
+        display: none;
+    }
+
+    .essential-card {
+        flex: 0 0 160px;
+        min-width: 160px;
     }
 
     .essential-icon {

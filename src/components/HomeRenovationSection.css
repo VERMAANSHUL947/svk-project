@@ -278,12 +278,35 @@
 
 @media (max-width: 640px) {
     .home-renovation-section {
-        padding: 24px 12px;
+        padding: 24px 0;
+    }
+
+    .home-renovation-container {
+        padding: 0;
+    }
+
+    .home-renovation-container>h2 {
+        padding: 0 12px;
     }
 
     .home-renovation-grid {
-        grid-template-columns: repeat(2, 1fr);
+        display: flex;
+        overflow-x: auto;
+        overflow-y: hidden;
         gap: 12px;
+        grid-template-columns: unset;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        padding: 0 12px;
+    }
+
+    .home-renovation-grid::-webkit-scrollbar {
+        display: none;
+    }
+
+    .renovation-card {
+        flex: 0 0 140px;
+        min-width: 140px;
     }
 
     .renovation-icon {

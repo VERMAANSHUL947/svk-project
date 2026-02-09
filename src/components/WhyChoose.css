@@ -62,17 +62,37 @@
 
 @media (max-width: 640px) {
   .why-choose {
-    padding: 40px 12px;
+    padding: 40px 0;
+  }
+
+  .why-container {
+    padding: 0;
   }
 
   .why-title {
     font-size: 22px;
     margin-bottom: 32px;
+    padding: 0 12px;
   }
 
   .stats-grid {
-    grid-template-columns: 1fr;
+    display: flex;
+    overflow-x: auto;
+    overflow-y: hidden;
     gap: 16px;
+    grid-template-columns: unset;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding: 0 12px;
+  }
+
+  .stats-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .stat-card {
+    flex: 0 0 200px;
+    min-width: 200px;
   }
 
   .stat-card h3 {

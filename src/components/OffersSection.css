@@ -247,32 +247,47 @@
 
 @media (max-width: 640px) {
     .offers-section {
-        padding: 24px 12px;
+        padding: 24px 0;
     }
 
     .offers-title {
         font-size: 20px;
         margin-bottom: 16px;
+        padding: 0 12px;
     }
 
     .carousel-wrapper {
-        padding: 0 30px;
+        padding: 0;
+    }
+
+    .carousel-track {
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        padding: 0 12px;
+    }
+
+    .carousel-track::-webkit-scrollbar {
+        display: none;
+    }
+
+    .carousel-inner {
+        display: flex;
+        gap: 12px;
+        width: max-content;
     }
 
     .offer-card {
-        flex: 0 0 100%;
+        flex: 0 0 280px;
+        min-width: 280px;
     }
 
     .carousel-nav {
-        width: 32px;
-        height: 32px;
+        display: none;
     }
 
-    .carousel-nav.prev {
-        left: -5px;
-    }
-
-    .carousel-nav.next {
-        right: -5px;
+    .carousel-dots {
+        display: none;
     }
 }

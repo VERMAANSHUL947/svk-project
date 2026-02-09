@@ -93,11 +93,36 @@
 
 @media (max-width: 640px) {
     .solar-water-section {
-        padding: 24px 12px;
+        padding: 24px 0;
+    }
+
+    .solar-water-container {
+        padding: 0;
     }
 
     .section-title {
         font-size: 20px;
+        padding: 0 12px;
+    }
+
+    .solar-water-grid {
+        display: flex;
+        overflow-x: auto;
+        overflow-y: hidden;
+        gap: 12px;
+        grid-template-columns: unset;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        padding: 0 12px;
+    }
+
+    .solar-water-grid::-webkit-scrollbar {
+        display: none;
+    }
+
+    .solar-water-card {
+        flex: 0 0 200px;
+        min-width: 200px;
     }
 
     .solar-icon {
