@@ -103,48 +103,32 @@ export default function Header() {
       <div className="header-container">
 
         {/* LOGO */}
-        <div className="logo" onClick={() => router.push('/')} style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <div style={{
-            width: '40px',
-            height: '40px',
-            background: 'linear-gradient(135deg, #ff6b6b 0%, #f59e0b 25%, #fbbf24 50%, #10b981 75%, #3b82f6 100%)',
-            borderRadius: '50%',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
-            position: 'relative'
-          }}>
-            <div style={{
-              fontSize: '20px',
-              fontWeight: '900',
-              color: 'white',
-              textShadow: '0 2px 4px rgba(0,0,0,0.3)'
-            }}>🏠</div>
-          </div>
-          <div style={{ display: 'flex', flexDirection: 'column', lineHeight: '1.2' }}>
-            <span style={{
-              fontSize: '20px',
-              fontWeight: '800',
-              background: 'linear-gradient(135deg, #1e293b 0%, #475569 100%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              letterSpacing: '-0.5px'
-            }}>
-              Urban<span style={{
-                background: 'linear-gradient(135deg, #f59e0b 0%, #ef4444 100%)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent'
-              }}>fixo</span>
-            </span>
-            <span style={{
-              fontSize: '9px',
-              color: '#64748b',
-              fontWeight: '600',
-              letterSpacing: '0.5px',
-              textTransform: 'uppercase'
-            }}>Home Services Simplified</span>
-          </div>
+        <div className="logo" onClick={() => router.push('/')} style={{ cursor: 'pointer' }}>
+          <img
+            src="/urbanfixo-logo.png"
+            alt="Urbanfixo - Home Services Simplified"
+            style={{
+              height: '55px',
+              width: 'auto',
+              objectFit: 'contain',
+              display: 'block'
+            }}
+            onError={(e) => {
+              // Fallback if image not found
+              e.target.style.display = 'none';
+              e.target.parentElement.innerHTML = `
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <div style="width: 40px; height: 40px; background: linear-gradient(135deg, #ff6b6b 0%, #f59e0b 25%, #fbbf24 50%, #10b981 75%, #3b82f6 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+                    <div style="fontSize: 20px; color: white;">🏠</div>
+                  </div>
+                  <div style="display: flex; flex-direction: column; line-height: 1.2;">
+                    <span style="fontSize: 20px; fontWeight: 800; color: #1e293b;">Urban<span style="color: #f59e0b;">fixo</span></span>
+                    <span style="fontSize: 9px; color: #64748b; fontWeight: 600; letterSpacing: 0.5px; textTransform: uppercase;">Home Services Simplified</span>
+                  </div>
+                </div>
+              `;
+            }}
+          />
         </div>
 
         {/* SEARCH */}

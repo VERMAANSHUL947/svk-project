@@ -22,42 +22,31 @@ export default function Footers() {
 
           {/* BRAND */}
           <div className="footer-brand">
-            <div className="brand-logo" style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '16px' }}>
-              <div style={{
-                width: '45px',
-                height: '45px',
-                background: 'linear-gradient(135deg, #ff6b6b 0%, #f59e0b 25%, #fbbf24 50%, #10b981 75%, #3b82f6 100%)',
-                borderRadius: '50%',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
-                flexShrink: 0
-              }}>
-                <div style={{
-                  fontSize: '24px',
-                  fontWeight: '900',
-                  color: 'white',
-                  textShadow: '0 2px 4px rgba(0,0,0,0.3)'
-                }}>🏠</div>
-              </div>
-              <div style={{ display: 'flex', flexDirection: 'column', lineHeight: '1.2' }}>
-                <span style={{
-                  fontSize: '24px',
-                  fontWeight: '800',
-                  color: '#1e293b',
-                  letterSpacing: '-0.5px'
-                }}>
-                  Urban<span style={{ color: '#f59e0b' }}>fixo</span>
-                </span>
-                <span style={{
-                  fontSize: '10px',
-                  color: '#64748b',
-                  fontWeight: '600',
-                  letterSpacing: '0.5px',
-                  textTransform: 'uppercase'
-                }}>Home Services Simplified</span>
-              </div>
+            <div className="brand-logo" style={{ marginBottom: '16px' }}>
+              <img
+                src="/urbanfixo-logo.png"
+                alt="Urbanfixo - Home Services Simplified"
+                style={{
+                  height: '50px',
+                  width: 'auto',
+                  objectFit: 'contain',
+                  display: 'block'
+                }}
+                onError={(e) => {
+                  e.target.style.display = 'none';
+                  e.target.parentElement.innerHTML = `
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                      <div style="width: 45px; height: 45px; background: linear-gradient(135deg, #ff6b6b 0%, #f59e0b 25%, #fbbf24 50%, #10b981 75%, #3b82f6 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+                        <div style="fontSize: 24px; color: white;">🏠</div>
+                      </div>
+                      <div style="display: flex; flex-direction: column; line-height: 1.2;">
+                        <span style="fontSize: 24px; fontWeight: 800; color: #1e293b;">Urban<span style="color: #f59e0b;">fixo</span></span>
+                        <span style="fontSize: 10px; color: #64748b; fontWeight: 600; letterSpacing: 0.5px; textTransform: uppercase;">Home Services Simplified</span>
+                      </div>
+                    </div>
+                  `;
+                }}
+              />
             </div>
             <p>
               Your trusted partner for all home services. From repairs to beauty,
