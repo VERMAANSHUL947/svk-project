@@ -24,18 +24,23 @@ const stats = [
   }
 ];
 
+// Duplicate stats for seamless marquee
+const extendedStats = [...stats, ...stats, ...stats];
+
 export default function WhyChoose() {
   return (
     <section className="why-choose">
       <div className="why-container">
         <h2 className="why-title">Why trust our services?</h2>
-        <div className="stats-grid">
-          {stats.map((stat, index) => (
-            <div key={index} className="stat-card">
-              <h3 style={{ color: stat.color }}>{stat.value}</h3>
-              <p>{stat.label}</p>
-            </div>
-          ))}
+        <div className="marquee-wrapper">
+          <div className="stats-track">
+            {extendedStats.map((stat, index) => (
+              <div key={index} className="stat-card">
+                <h3 style={{ color: stat.color }}>{stat.value}</h3>
+                <p>{stat.label}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

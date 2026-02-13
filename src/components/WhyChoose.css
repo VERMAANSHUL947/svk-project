@@ -17,23 +17,72 @@
   color: #1a1a1a;
 }
 
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+.marquee-wrapper {
+  width: 100%;
+  overflow: hidden;
+  padding: 20px 0;
+  position: relative;
+}
+
+/* Gradient fade effects at edges */
+.marquee-wrapper::before,
+.marquee-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 100px;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.marquee-wrapper::before {
+  left: 0;
+  background: linear-gradient(to right, #f8f9fa, transparent);
+}
+
+.marquee-wrapper::after {
+  right: 0;
+  background: linear-gradient(to left, #f8f9fa, transparent);
+}
+
+.stats-track {
+  display: flex;
   gap: 32px;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+}
+
+.stats-track:hover {
+  animation-play-state: paused;
 }
 
 .stat-card {
   background: #fff;
-  padding: 32px 24px;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  padding: 32px 40px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   transition: all 0.3s ease;
+  flex: 0 0 280px;
+  text-align: center;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    /* Since we have 3 copies of 4 items, we scroll past one full set of items */
+    /* 4 items * (280px width + 32px gap) = 1248px */
+    transform: translateX(-1248px);
+  }
 }
 
 .stat-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  transform: translateY(-8px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
 }
 
 .stat-card h3 {
@@ -44,58 +93,38 @@
 }
 
 .stat-card p {
-  font-size: 12px;
-  font-weight: 700;
-  color: #666;
+  font-size: 13px;
+  font-weight: 800;
+  color: #64748b;
   margin: 0;
-  letter-spacing: 1px;
+  letter-spacing: 1.5px;
   text-transform: uppercase;
 }
 
 /* Responsive */
-@media (max-width: 968px) {
-  .stats-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-  }
-}
-
-@media (max-width: 640px) {
-  .why-choose {
-    padding: 40px 0;
-  }
-
-  .why-container {
-    padding: 0;
-  }
-
-  .why-title {
-    font-size: 22px;
-    margin-bottom: 32px;
-    padding: 0 12px;
-  }
-
-  .stats-grid {
-    display: flex;
-    overflow-x: auto;
-    overflow-y: hidden;
-    gap: 16px;
-    grid-template-columns: unset;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    padding: 0 12px;
-  }
-
-  .stats-grid::-webkit-scrollbar {
-    display: none;
-  }
-
+@media (max-width: 768px) {
   .stat-card {
     flex: 0 0 200px;
-    min-width: 200px;
+    padding: 24px 20px;
   }
 
   .stat-card h3 {
     font-size: 36px;
+  }
+
+  .stats-track {
+    gap: 16px;
+    animation-duration: 20s;
+  }
+
+  @keyframes marquee {
+    0% {
+      transform: translateX(0);
+    }
+
+    100% {
+      /* Adjusted for mobile: 4 items * (200px width + 16px gap) = 864px */
+      transform: translateX(-864px);
+    }
   }
 }
