@@ -1,8 +1,9 @@
 .auth-page {
     min-height: 100vh;
-    background: #ffffff;
+    background: #ffffff !important;
     font-family: 'Inter', -apple-system, sans-serif;
-    color: #1a1a1a;
+    color: #000000 !important;
+    /* Force black text for both light/dark mode */
 }
 
 /* Split Login Page */
@@ -46,9 +47,7 @@
 }
 
 .logo-box {
-    background: #2563eb;
-    padding: 8px;
-    border-radius: 8px;
+    padding: 0;
     display: flex;
 }
 
@@ -112,7 +111,7 @@
     font-size: 2rem;
     font-weight: 800;
     margin-bottom: 8px;
-    color: #000;
+    color: #000 !important;
 }
 
 .auth-header p {
@@ -273,6 +272,7 @@
     font-size: 2.25rem;
     font-weight: 800;
     margin-bottom: 12px;
+    color: #1a1a1a !important;
 }
 
 .signup-footer-info {

@@ -124,7 +124,7 @@ export default function SignupPage() {
         <div className="auth-page signup-page">
             <div className="brand-logo" onClick={() => router.push('/')} style={{ cursor: 'pointer', position: 'absolute', top: '30px', left: '30px' }}>
                 <div className="logo-box">
-                    <Home size={20} color="white" />
+                    <Home size={20} color="black" />
                 </div>
                 <span style={{ color: '#000' }}>HomeServices</span>
             </div>
