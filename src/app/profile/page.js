@@ -25,7 +25,7 @@ export default function ProfilePage() {
   const [user, setUser] = useState(null);
   const [bookings, setBookings] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [activeTab, setActiveTab] = useState('bookings');
+  const [activeTab, setActiveTab] = useState('shop');
   const [searchTerm, setSearchTerm] = useState('');
   const [sections, setSections] = useState([]);
 
@@ -181,9 +181,11 @@ export default function ProfilePage() {
                   <span>{(user.fullName || user.name || 'U').charAt(0)}</span>
                 )}
               </div>
-              <h3>{user.fullName || user.name || 'User'}</h3>
-              <p className="user-email">{user.email}</p>
-              <p className="user-phone">{user.phone}</p>
+              <div className="user-info-text">
+                <h3>{user.fullName || user.name || 'User'}</h3>
+                <p className="user-email">{user.email}</p>
+                <p className="user-phone">{user.phone}</p>
+              </div>
               <button onClick={handleLogout} className="logout-btn">
                 <LogOut size={16} /> Logout
               </button>

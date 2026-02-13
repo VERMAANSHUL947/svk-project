@@ -48,11 +48,18 @@
     font-size: 1.25rem;
 }
 
+.user-info-text {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
 .user-email,
 .user-phone {
     color: #6b7280;
     font-size: 0.9rem;
-    margin-bottom: 5px;
+    margin: 0;
 }
 
 .logout-btn {
@@ -390,6 +397,15 @@
         align-items: center;
         text-align: left;
         gap: 15px;
+        flex-wrap: wrap;
+        /* Allow logout button to skip to next line if needed */
+    }
+
+    .user-info-text {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        min-width: 0;
     }
 
     .profile-avatar {
@@ -397,25 +413,32 @@
         width: 60px;
         height: 60px;
         font-size: 24px;
+        flex-shrink: 0;
     }
 
     .user-card h3 {
         font-size: 1.1rem;
         margin-bottom: 2px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     .user-email,
     .user-phone {
         font-size: 0.8rem;
         margin-bottom: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     .logout-btn {
-        margin-top: 0;
-        width: auto;
-        padding: 6px 12px;
-        font-size: 0.8rem;
-        margin-left: auto;
+        margin-top: 10px;
+        width: 100%;
+        /* Back to full width line on mobile for logout */
+        padding: 8px;
+        font-size: 0.85rem;
     }
 
     .profile-tabs {
