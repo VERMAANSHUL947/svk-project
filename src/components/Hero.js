@@ -142,9 +142,9 @@ export default function Hero() {
     <section className="hero">
       <div className="hero-container">
         <h1 className="hero-title">
-          {user ? `Welcome back, ${user.fullName.split(' ')[0]}!` : "Home service experts at your doorstep"}
+          {user ? `Hello, ${user.fullName.split(' ')[0]}! 👋` : "Home service experts at your doorstep"}
         </h1>
-        {user && <p className="hero-welcome-sub" style={{ textAlign: 'center', color: '#64748b', marginTop: '-10px', fontSize: '18px', fontWeight: '500' }}>What can we help you with today?</p>}
+        {user && <p className="hero-welcome-sub">What can we help you with today?</p>}
 
         <div className="hero-wrapper">
           {/* LEFT SIDE - Promotional Banner */}
