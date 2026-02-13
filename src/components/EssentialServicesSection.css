@@ -101,11 +101,12 @@
         display: flex;
         overflow-x: auto;
         overflow-y: hidden;
-        gap: 12px;
+        gap: 16px;
         grid-template-columns: unset;
         -webkit-overflow-scrolling: touch;
         scrollbar-width: none;
-        padding: 0 12px;
+        padding: 0 16px;
+        scroll-snap-type: x mandatory;
     }
 
     .essential-services-grid::-webkit-scrollbar {
@@ -113,8 +114,10 @@
     }
 
     .essential-card {
-        flex: 0 0 160px;
-        min-width: 160px;
+        flex: 0 0 calc(100vw - 64px);
+        min-width: calc(100vw - 64px);
+        max-width: 280px;
+        scroll-snap-align: center;
     }
 
     .essential-icon {

@@ -253,11 +253,11 @@
     .offers-title {
         font-size: 20px;
         margin-bottom: 16px;
-        padding: 0 12px;
+        padding: 0 16px;
     }
 
     .carousel-wrapper {
-        padding: 0 45px;
+        padding: 0;
         position: relative;
     }
 
@@ -266,7 +266,8 @@
         overflow-y: hidden;
         -webkit-overflow-scrolling: touch;
         scrollbar-width: none;
-        padding: 0 12px;
+        padding: 0 16px;
+        scroll-snap-type: x mandatory;
     }
 
     .carousel-track::-webkit-scrollbar {
@@ -277,41 +278,26 @@
         display: flex;
         gap: 12px;
         width: max-content;
+        transform: none !important;
     }
 
     .offer-card {
-        flex: 0 0 280px;
-        min-width: 280px;
+        flex: 0 0 calc(100vw - 48px);
+        min-width: calc(100vw - 48px);
+        max-width: 300px;
+        scroll-snap-align: center;
+        margin: 0;
     }
 
-    /* Show arrows on mobile with better styling */
     .carousel-nav {
-        display: flex;
-        width: 36px;
-        height: 36px;
-        background: linear-gradient(135deg, #00D9A5 0%, #00b894 100%);
-        border: none;
-        color: white;
-        box-shadow: 0 4px 12px rgba(0, 217, 165, 0.4);
-        z-index: 20;
-    }
-
-    .carousel-nav:hover {
-        background: linear-gradient(135deg, #00b894 0%, #00a885 100%);
-        transform: translateY(-50%) scale(1.05);
-    }
-
-    .carousel-nav.prev {
-        left: 5px;
-    }
-
-    .carousel-nav.next {
-        right: 5px;
+        display: none;
+        /* Hide arrows on mobile for native scroll */
     }
 
     .carousel-dots {
         display: flex;
         margin-top: 16px;
+        justify-content: center;
     }
 
     .dot {

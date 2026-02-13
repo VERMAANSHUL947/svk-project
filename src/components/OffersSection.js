@@ -120,7 +120,7 @@ export default function OffersSection() {
                         <div
                             className="carousel-inner"
                             style={{
-                                transform: `translateX(-${currentIndex * (100 / itemsVisible)}%)`,
+                                transform: itemsVisible > 1 ? `translateX(-${currentIndex * (100 / itemsVisible)}%)` : 'none',
                                 transition: 'transform 0.5s ease-in-out'
                             }}
                         >

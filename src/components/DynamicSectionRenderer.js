@@ -37,19 +37,16 @@ export default function DynamicSectionRenderer({ sections }) {
                         padding: 0 !important;
                     }
 
-                    .dynamic-section .section-title {
-                        padding: 0 12px !important;
-                    }
-
                     .dynamic-grid {
                         display: flex !important;
                         overflow-x: auto;
                         overflow-y: hidden;
-                        gap: 12px !important;
+                        gap: 16px !important;
                         grid-template-columns: unset !important;
                         -webkit-overflow-scrolling: touch;
                         scrollbar-width: none;
-                        padding: 0 12px;
+                        padding: 0 16px;
+                        scroll-snap-type: x mandatory;
                     }
 
                     .dynamic-grid::-webkit-scrollbar {
@@ -57,8 +54,10 @@ export default function DynamicSectionRenderer({ sections }) {
                     }
 
                     .dynamic-card {
-                        flex: 0 0 260px !important;
-                        min-width: 260px !important;
+                        flex: 0 0 calc(100vw - 48px) !important;
+                        min-width: calc(100vw - 48px) !important;
+                        max-width: 300px !important;
+                        scroll-snap-align: center;
                     }
                 }
             `}</style>
