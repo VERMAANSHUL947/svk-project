@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useCart } from '@/context/CartContext';
 import { toast } from 'react-toastify';
-import { ShoppingCart, ArrowRight } from 'lucide-react';
+import { ShoppingCart, ArrowRight, Star, Users, Award } from 'lucide-react';
 import { categories } from '../data/categories';
 import {
   ACIcon,
@@ -353,16 +353,25 @@ export default function Hero() {
             {/* STATS */}
             <div className="stats">
               <div className="stat-box">
+                <div className="stat-icon-wrapper purple">
+                  <Star size={20} fill="currentColor" />
+                </div>
                 <h3>4.8★</h3>
-                <p className="stat-label purple">SERVICE RATING</p>
+                <p className="stat-label">SERVICE RATING</p>
               </div>
               <div className="stat-box">
+                <div className="stat-icon-wrapper blue">
+                  <Users size={20} fill="currentColor" />
+                </div>
                 <h3>100K+</h3>
-                <p className="stat-label blue">HAPPY CUSTOMERS</p>
+                <p className="stat-label">HAPPY CUSTOMERS</p>
               </div>
               <div className="stat-box">
+                <div className="stat-icon-wrapper orange">
+                  <Award size={20} fill="currentColor" />
+                </div>
                 <h3>5K+</h3>
-                <p className="stat-label orange">EXPERT PARTNERS</p>
+                <p className="stat-label">EXPERT PARTNERS</p>
               </div>
             </div>
           </div>

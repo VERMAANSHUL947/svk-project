@@ -596,71 +596,66 @@
 }
 
 .stat-box {
-  background: linear-gradient(135deg, #fafbfc 0%, #f8f9fa 100%);
-  padding: 20px 14px;
+  background: #fff;
+  padding: 24px 16px;
   text-align: center;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
   position: relative;
-  border-radius: 16px;
-  border: 2px solid #f1f5f9;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-}
-
-.stat-box::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 16px;
-  background: linear-gradient(135deg, rgba(99, 102, 241, 0.05) 0%, rgba(168, 85, 247, 0.05) 100%);
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  border-radius: 20px;
+  border: 1px solid #f1f5f9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
 }
 
 .stat-box:hover {
-  transform: translateY(-4px) scale(1.02);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
-  border-color: transparent;
+  transform: translateY(-5px);
+  border-color: #e2e8f0;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
 }
 
-.stat-box:hover::before {
-  opacity: 1;
+.stat-icon-wrapper {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 4px;
+}
+
+.stat-icon-wrapper.purple {
+  background: #f5f3ff;
+  color: #7c3aed;
+}
+
+.stat-icon-wrapper.blue {
+  background: #eff6ff;
+  color: #2563eb;
+}
+
+.stat-icon-wrapper.orange {
+  background: #fff7ed;
+  color: #f59e0b;
 }
 
 .stat-box h3 {
-  font-size: 36px;
-  font-weight: 900;
-  margin: 0 0 8px 0;
-  background: linear-gradient(135deg, #1e293b 0%, #475569 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  letter-spacing: -1.5px;
-  position: relative;
-  z-index: 1;
+  font-size: 32px;
+  font-weight: 800;
+  margin: 0;
+  color: #1e293b;
+  letter-spacing: -1px;
 }
 
 .stat-label {
   font-size: 10px;
-  font-weight: 800;
-  line-height: 1.4;
+  font-weight: 700;
+  color: #64748b;
   margin: 0;
   text-transform: uppercase;
-  letter-spacing: 0.8px;
-  position: relative;
-  z-index: 1;
-}
-
-.stat-label.purple {
-  color: #7c3aed;
-}
-
-.stat-label.blue {
-  color: #2563eb;
-}
-
-.stat-label.orange {
-  color: #f59e0b;
+  letter-spacing: 0.5px;
 }
 
 /* RESPONSIVE */
@@ -766,12 +761,19 @@
   }
 
   .stat-box {
-    padding: 16px 12px;
-    border-radius: 12px;
+    padding: 16px 8px;
+    border-radius: 16px;
+    gap: 4px;
+  }
+
+  .stat-icon-wrapper {
+    width: 32px;
+    height: 32px;
+    margin-bottom: 2px;
   }
 
   .stat-box h3 {
-    font-size: 28px;
+    font-size: 22px;
   }
 
   .stat-label {
