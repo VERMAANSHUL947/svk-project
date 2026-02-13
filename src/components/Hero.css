@@ -233,8 +233,9 @@
   border-radius: 20px;
   box-sizing: border-box;
   overflow: hidden;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: none;
+  /* Removed shadow */
+  border: 1px solid #f1f5f9;
 }
 
 .search-header {
@@ -716,8 +717,9 @@
   }
 
   .service-grid {
-    grid-template-columns: repeat(2, 1fr);
-    padding: 16px;
+    grid-template-columns: repeat(3, 1fr);
+    /* 3 columns on mobile */
+    padding: 12px;
     gap: 8px;
   }
 
