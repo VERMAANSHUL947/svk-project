@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   /* config options here */
-  // Triggering redeploy for environment variables
+  // Force redeploy - Apply env variables final attempt
 };
 
 export default nextConfig;
